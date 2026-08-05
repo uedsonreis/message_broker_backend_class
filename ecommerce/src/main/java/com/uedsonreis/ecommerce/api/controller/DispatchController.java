@@ -1,8 +1,9 @@
 package com.uedsonreis.ecommerce.api.controller;
 
 import com.uedsonreis.ecommerce.model.Dispatch;
-import com.uedsonreis.ecommerce.model.DispatchOrder;
+import com.uedsonreis.ecommerce.api.controller.dto.DispatchOrder;
 import com.uedsonreis.ecommerce.service.DispatchService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ public class DispatchController {
     private DispatchService service;
 
     @PostMapping
-    public Dispatch store(@RequestBody DispatchOrder dispatchOrder) throws Exception {
+    public Dispatch store(@Valid @RequestBody DispatchOrder dispatchOrder) throws Exception {
         return this.service.create(dispatchOrder);
     }
 

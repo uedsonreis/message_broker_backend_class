@@ -3,7 +3,7 @@ package com.uedsonreis.ecommerce.service;
 import com.uedsonreis.ecommerce.exception.BusinessException;
 import com.uedsonreis.ecommerce.model.Customer;
 import com.uedsonreis.ecommerce.model.Dispatch;
-import com.uedsonreis.ecommerce.model.DispatchOrder;
+import com.uedsonreis.ecommerce.api.controller.dto.DispatchOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
