@@ -31,5 +31,4 @@ export class CustomerController {
     public remove(@Param('cnpjCpf') cnpjCpf: string) {
         this.service.remove(cnpjCpf);
     }
-
 }
