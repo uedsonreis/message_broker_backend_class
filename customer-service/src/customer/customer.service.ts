@@ -1,4 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+
 import type { Customer } from './model';
 import { CustomerMessageBroker } from './customer.message.broker';
 
@@ -22,7 +23,7 @@ export class CustomerService {
         if (saved) throw new HttpException('CNPJ/CPF já cadastrado!', HttpStatus.BAD_REQUEST);
 
         this.customerDB.push(customer);
-        this.messageBroker.update(customer);
+        this.messageBroker.emitSave(customer);
     }
 
     public update(customer: Customer) {
@@ -33,13 +34,13 @@ export class CustomerService {
         saved.email = customer.email;
         saved.address = customer.address;
 
-        this.messageBroker.update(customer);
+        this.messageBroker.emitSave(customer);
     }
 
     public remove(cnpjCpf: string) {
         const customer = this.customerDB.find(c => c.cnpjCpf === cnpjCpf);
         this.customerDB = this.customerDB.filter(c => c.cnpjCpf !== cnpjCpf);
 
-        if (customer) this.messageBroker.remove(customer);
+        if (customer) this.messageBroker.emitRemove(customer);
     }
 }

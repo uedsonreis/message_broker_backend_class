@@ -21,16 +21,32 @@ public class CustomerService {
         return null;
     }
 
-    public Customer create(Customer customer) throws Exception {
+    public void save(Customer customer) throws Exception {
+
+        if (customer == null || customer.getCnpjCpf() == null || customer.getName() == null) {
+            throw new BusinessException("Customer Object is invalid for save!");
+        }
+        if (customer.getAddress() == null || customer.getAddress().getPostalCode() == null || customer.getAddress().getDescription() == null || customer.getAddress().getCity() == null) {
+            throw new BusinessException("Address Object is invalid for save!");
+        }
+
         if (!this.customersDB.isEmpty()) {
-            if (this.customersDB.stream().anyMatch(c -> c.getCnpjCpf().equals(customer.getCnpjCpf()))) {
-                throw new BusinessException("CNPJ/CPF já cadastrado!");
+            Optional<Customer> saved = this.customersDB.stream().filter(c -> c.getCnpjCpf().equals(customer.getCnpjCpf())).findFirst();
+            if (saved.isPresent()) {
+                Customer customerSaved = saved.get();
+                customerSaved.setName(customer.getName());
+                customerSaved.setAddress(customer.getAddress());
             }
         }
 
         this.customersDB.add(customer);
+    }
 
-        return customer;
+    public void delete(Customer customer) throws BusinessException {
+        if (customer == null || customer.getCnpjCpf() == null) {
+            throw new BusinessException("Customer Object is invalid for delete!");
+        }
+        this.customersDB.remove(customer);
     }
 
 }

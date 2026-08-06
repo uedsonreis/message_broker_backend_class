@@ -1,4 +1,4 @@
-package com.uedsonreis.ecommerce.api.controller.dto;
+package com.uedsonreis.ecommerce.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.uedsonreis.ecommerce.util.JsonUtil;

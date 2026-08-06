@@ -1,6 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { CustomerService } from './customer.service';
+// import { Ctx, EventPattern, Payload, RmqContext } from "@nestjs/microservices";
+
 import { Customer, CustomerDto } from './model';
+import { CustomerService } from './customer.service';
 
 @Controller('/customers')
 export class CustomerController {
@@ -31,4 +33,10 @@ export class CustomerController {
     public remove(@Param('cnpjCpf') cnpjCpf: string) {
         this.service.remove(cnpjCpf);
     }
+
+    // @EventPattern('customer.update')
+    // public handleCustomer(@Payload() data: any, @Ctx() context: RmqContext) {
+    //     console.log('Pattern: ', context.getPattern());
+    //     console.log('Data: ', data);
+    // }
 }

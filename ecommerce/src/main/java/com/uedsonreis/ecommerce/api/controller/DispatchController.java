@@ -1,7 +1,7 @@
 package com.uedsonreis.ecommerce.api.controller;
 
 import com.uedsonreis.ecommerce.model.Dispatch;
-import com.uedsonreis.ecommerce.api.controller.dto.DispatchOrder;
+import com.uedsonreis.ecommerce.api.dto.DispatchOrder;
 import com.uedsonreis.ecommerce.service.DispatchService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

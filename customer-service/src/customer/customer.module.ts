@@ -12,9 +12,9 @@ import { CustomerMessageBroker } from './customer.message.broker';
                 name: 'CUSTOMER_SERVICE',
                 transport: Transport.RMQ,
                 options: {
-                    urls: ['amqp://192.168.0.4:5672'],
+                    urls: ['amqp://localhost:5672'],
                     queue: 'customer_queue',
-                    queueOptions: { durable: false },
+                    queueOptions: { durable: true },
                 },
             },
         ])
